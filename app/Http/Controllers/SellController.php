@@ -43,17 +43,28 @@ class SellController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Sell $sells)
     {
         //
+        return redirect()->route('sells.index');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Sell $sells)
     {
         //
+             // Valida y actualiza la tarea existente en la base de datos
+             $validatedData = $request->validate([
+                'titulo' => 'required',
+                'descripcion' => 'required',
+                'estado' => 'required',
+            ]);
+      
+            $sells->update($validatedData);
+        
+            return redirect()->route('sells.index');
     }
 
     /**
@@ -61,6 +72,8 @@ class SellController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Elimina la tarea de la base de datos
+        $sells-> delete();
+        return redirect()->route('sells.index')->with('success','Tarea Eliminada');
     }
 }

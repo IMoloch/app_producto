@@ -60,6 +60,8 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Elimina la tarea de la base de datos
+        $categories-> delete();
+        return redirect()->route('categories.index')->with('success','Tarea Eliminada');
     }
 }
