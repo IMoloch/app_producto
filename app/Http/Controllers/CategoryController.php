@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -13,6 +14,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        $categories = Category::all();
+        return view('categories.index', ['categories' => DB::table('categories') -> paginate(10)]);
     }
 
     /**
@@ -42,17 +45,27 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $categories)
     {
         //
+        return redirect()->route('categories.index');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $categories)
     {
-        //
+             // Valida y actualiza la tarea existente en la base de datos
+             $validatedData = $request->validate([
+                'titulo' => 'required',
+                'descripcion' => 'required',
+                'estado' => 'required',
+            ]);
+      
+            $categories->update($validatedData);
+        
+            return redirect()->route('categories.index');
     }
 
     /**

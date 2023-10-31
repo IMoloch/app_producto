@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Sell;
 
 
@@ -14,6 +15,8 @@ class SellController extends Controller
     public function index()
     {
         //
+        $sells = Sell::all();
+        return view('sells.index', ['sells' => DB:table('sells') -> paginate(10)]);
     }
 
     /**
