@@ -16,7 +16,7 @@ class SellController extends Controller
     {
         //
         $sells = Sell::all();
-        return view('sells.index', ['sells' => DB:table('sells') -> paginate(10)]);
+        return view('sells.index', ['sells' => DB::table('sells') -> paginate(10)]);
     }
 
     /**

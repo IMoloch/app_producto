@@ -16,7 +16,7 @@ class PurchaseController extends Controller
     {
         //
         $po = Purchase::all();
-        return view('po.index', ['po' => DB:table('po') -> paginate(10)]);
+        return view('po.index', ['po' => DB::table('po') -> paginate(10)]);
     }
 
     /**
@@ -72,7 +72,7 @@ class PurchaseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Purchase $po)
     {
                 // Elimina la tarea de la base de datos
                 $po-> delete();
