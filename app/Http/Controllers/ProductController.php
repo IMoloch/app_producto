@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         //
         $products = Product::all();
-        return view('products.index', ['products' => DB:table('products') -> paginate(10)]);
+        return view('products.index', ['products' => DB::table('products') -> paginate(10)]);
     }
 
     /**
@@ -72,7 +72,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $products)
     {
         // Elimina la tarea de la base de datos
         $products-> delete();
