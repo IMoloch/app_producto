@@ -73,7 +73,7 @@ class SellController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Sell $sells)
     {
         // Elimina la tarea de la base de datos
         $sells-> delete();
