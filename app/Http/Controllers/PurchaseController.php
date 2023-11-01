@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Purchase;
 
 
@@ -14,6 +15,8 @@ class PurchaseController extends Controller
     public function index()
     {
         //
+        $po = Purchase::all();
+        return view('po.index', ['po' => DB:table('po') -> paginate(10)]);
     }
 
     /**
@@ -43,17 +46,27 @@ class PurchaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Purchase $po)
     {
-        //
+        return redirect()->route('po.index');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Purchase $po)
     {
-        //
+             // Valida y actualiza la tarea existente en la base de datos
+             $validatedData = $request->validate([
+                'titulo' => 'required',
+                'descripcion' => 'required',
+                'estado' => 'required',
+            ]);
+      
+            $po->update($validatedData);
+        
+            return redirect()->route('po.index');
+       
     }
 
     /**
@@ -61,6 +74,8 @@ class PurchaseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+                // Elimina la tarea de la base de datos
+                $po-> delete();
+                return redirect()->route('po.index')->with('success','Tarea Eliminada');
     }
 }

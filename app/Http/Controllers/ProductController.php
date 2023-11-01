@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 
 
@@ -14,6 +15,8 @@ class ProductController extends Controller
     public function index()
     {
         //
+        $products = Product::all();
+        return view('products.index', ['products' => DB:table('products') -> paginate(10)]);
     }
 
     /**
@@ -43,17 +46,27 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $products)
     {
         //
+        return redirect()->route('products.index');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $products)
     {
-        //
+             // Valida y actualiza la tarea existente en la base de datos
+             $validatedData = $request->validate([
+                'titulo' => 'required',
+                'descripcion' => 'required',
+                'estado' => 'required',
+            ]);
+      
+            $products->update($validatedData);
+        
+            return redirect()->route('products.index');
     }
 
     /**
@@ -61,6 +74,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Elimina la tarea de la base de datos
+        $products-> delete();
+        return redirect()->route('products.index')->with('success','Tarea Eliminada');
     }
 }
