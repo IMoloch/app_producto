@@ -16,15 +16,15 @@
                         @csrf
                         <div class="mb-4">
                             <label for="quantity" class="block text-gray-700 dark:text-gray-300">Quantity</label>
-                            <input type="number" name="quantity" id="quantity" class="form-input form-input-tailwind" required>
+                            <input type="number" name="cant" id="cant" class="form-input form-input-tailwind" required>
                         </div>
                         <div class="mb-4">
                             <label for="product_id" class="block text-gray-700 dark:text-gray-300">Product ID</label>
-                            <input type="number" name="product_id" id="product_id" class="form-input form-input-tailwind" required>
+                            <input type="number" name="id_Product" id="id_Product" class="form-input form-input-tailwind" required>
                         </div>
                         <div class="mb-4">
                             <label for="cost" class="block text-gray-700 dark:text-gray-300">Cost</label>
-                            <input type="number" name="cost" id="cost" class="form-input form-input-tailwind" required>
+                            <input type="number" name="costo" id="costo" class="form-input form-input-tailwind" required>
                         </div>
                         <button type="submit" class="btn-blue btn-blue-tailwind">Create Purchase</button>
                         <a href="{{ route('purchases.index') }}" class="btn-blue btn-blue-tailwind mt-4">Back</a>

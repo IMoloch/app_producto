@@ -51,6 +51,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         ]);
 
     // Purchase routes
+    // Route::post('/purchase/store', [PurchaseController::class, 'store'])->name('purchases.store');
     Route::resource('purchases', PurchaseController::class)
         ->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'])
         ->names([

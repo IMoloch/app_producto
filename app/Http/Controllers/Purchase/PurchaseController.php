@@ -21,14 +21,19 @@ class PurchaseController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'quantity' => 'required|numeric',
-            'product_id' => 'required|numeric',
-            'cost' => 'required|numeric',
-            // Add validation rules for other fields as needed
-        ]);
+        // $data = $request->validate([
+        //     'cant' => 'required|numeric',
+        //     'id_Product' => 'required|numeric',
+        //     'costo' => 'required|numeric',
+        //     // Add validation rules for other fields as needed
+        // ]);
 
-        Purchase::create($data);
+        $data = new Purchase();
+        $data->cant = $request->cant;
+        $data->id_Product = $request->id_Product;
+        $data->costo = $request->costo;
+
+        $data->save();
 
         return redirect()->route('purchases.index');
     }

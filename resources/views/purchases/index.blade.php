@@ -38,7 +38,7 @@
                                     <td class="px-4 py-2">${{ number_format($purchase->costo, 2) }}</td>
                                     <td class="px-4 py-2">{{ $purchase->created_at }}</td>
                                     <td class="px-4 py-2">
-                                        <a href="{{ route('purchases.edit', $purchase) }}" class="btn-blue btn-blue-tailwind">Edit</a>
+                                        <a href="{{ route('purchases.edit', $purchase->id) }}" class="btn-blue btn-blue-tailwind">Edit</a>
                                         <form action="{{ route('purchases.destroy', $purchase) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')

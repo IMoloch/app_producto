@@ -31,14 +31,19 @@
                                 <tr>
                                     <td class="px-4 py-2">{{ $sell->id }}</td>
                                     <td class="px-4 py-2">
-                                        @if ($sell->product)
-                                            {{ $sell->product->name }}
+                                        {{-- @if ($sell->products)
+                                            {{ $sell->products->name }}
                                         @else
                                             Product Not Found
-                                        @endif
+                                        @endif --}}
+
+                                        @foreach ($products as $product)
+                                            @if ($sell->id_Product == $product->id) {{ $product->name }} @endif
+                                        @endforeach
+
                                     </td>
-                                    <td class="px-4 py-2">{{ $sell->quantity }}</td>
-                                    <td class="px-4 py-2">{{ $sell->price }}</td>
+                                    <td class="px-4 py-2">{{ $sell->cant }}</td>
+                                    <td class="px-4 py-2">{{ $sell->precio }}</td>
                                     <td class="px-4 py-2">
                                         <a href="{{ route('sells.edit', $sell->id) }}" class="btn-blue btn-blue-tailwind">Edit</a>
                                         <form action="{{ route('sells.destroy', $sell->id) }}" method="POST" style="display: inline;">

@@ -21,9 +21,9 @@ class CreateSellController extends Controller
         // Validation logic here
 
         Sell::create([
-            'product_id' => $request->input('product_id'),
-            'quantity' => $request->input('quantity'),
-            'price' => $request->input('price'),
+            'id_Product' => $request->input('id_Product'),
+            'cant' => $request->input('cant'),
+            'precio' => $request->input('precio'),
         ]);
 
         return redirect()->route('sells.index')->with('success', 'Sell created successfully');

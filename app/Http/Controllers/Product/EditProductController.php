@@ -17,7 +17,7 @@ class EditProductController extends Controller // Extend the base Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'descripcion' => 'required|string',
             'price' => 'required|numeric',
         ]);
 

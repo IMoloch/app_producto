@@ -4,7 +4,9 @@
             {{ __('Edit Purchase') }}
         </h2>
     </x-slot>
-
+<@php
+    var_dump($purchase);
+@endphp
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
@@ -17,15 +19,15 @@
                         @method('PUT')
                         <div class="mb-4">
                             <label for="quantity" class="block text-gray-700 dark:text-gray-300">Quantity</label>
-                            <input type="number" name="quantity" id="quantity" class="form-input form-input-tailwind" value="{{ $purchase->quantity }}" required>
+                            <input type="number" name="quantity" id="quantity" class="form-input form-input-tailwind" value="{{ $purchase->cant }}" required>
                         </div>
                         <div class="mb-4">
                             <label for="product_id" class="block text-gray-700 dark:text-gray-300">Product ID</label>
-                            <input type="number" name="product_id" id="product_id" class="form-input form-input-tailwind" value="{{ $purchase->product_id }}" required>
+                            <input type="number" name="product_id" id="product_id" class="form-input form-input-tailwind" value="{{ $purchase->id_Product }}" required>
                         </div>
                         <div class="mb-4">
                             <label for="cost" class="block text-gray-700 dark:text-gray-300">Cost</label>
-                            <input type="number" name="cost" id="cost" class="form-input form-input-tailwind" value="{{ $purchase->cost }}" required>
+                            <input type="number" name="cost" id="cost" class="form-input form-input-tailwind" value="{{ $purchase->costo }}" required>
                         </div>
                         <!-- Add input fields for other purchase details -->
                         <!-- For example:
