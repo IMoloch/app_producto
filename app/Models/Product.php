@@ -9,15 +9,13 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function categories(){
-        return $this->belongsToOne(Category::class, 'id_Category');
-    }
+    protected $fillable = ['name', 'description', 'price'];
 
-    public function pruchases(){
-        return $this->hasMany(Purchase::class, 'id_Product');
-    }
-
-    public function sells(){
-        return $this->hasMany(Sell::class, 'id_Product');
+    // Define the relationship with the Category model
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
+
+
