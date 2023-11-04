@@ -15,6 +15,7 @@
                     <a href="{{ route('products.create') }}" class="btn-blue btn-blue-tailwind mb-4">
                         Create New Product
                     </a>
+                    <a href="{{ route('dashboard') }}" class="btn-blue btn-blue-tailwind mb-4">Back</a> <!-- Updated Back button with the same style -->
                     <table class="table-auto">
                         <thead>
                             <tr>

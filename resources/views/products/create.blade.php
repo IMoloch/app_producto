@@ -23,11 +23,12 @@
                             <textarea name="description" id="description" class="form-textarea form-textarea-tailwind" required></textarea>
                         </div>
                         <div class="mb-4">
-                            <label for="price" class="block text-gray-700 dark:text-gray-300">Price</label>
+                            <label for "price" class="block text-gray-700 dark:text-gray-300">Price</label>
                             <input type="number" name="price" id="price" class="form-input form-input-tailwind" required>
                         </div>
                         <button type="submit" class="btn-blue btn-blue-tailwind">Create Product</button>
                     </form>
+                    <a href="{{ route('products.index') }}" class="btn-blue btn-blue-tailwind mt-4">Back</a> <!-- Add a Back button to go to the Products view -->
                 </div>
             </div>
         </div>

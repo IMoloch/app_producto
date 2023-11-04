@@ -8,7 +8,28 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <!-- Purchase creation form here -->
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+                        Create Purchase
+                    </h2>
+                    <form method="POST" action="{{ route('purchases.store') }}">
+                        @csrf
+                        <div class="mb-4">
+                            <label for="quantity" class="block text-gray-700 dark:text-gray-300">Quantity</label>
+                            <input type="number" name="quantity" id="quantity" class="form-input form-input-tailwind" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="product_id" class="block text-gray-700 dark:text-gray-300">Product ID</label>
+                            <input type="number" name="product_id" id="product_id" class="form-input form-input-tailwind" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="cost" class="block text-gray-700 dark:text-gray-300">Cost</label>
+                            <input type="number" name="cost" id="cost" class="form-input form-input-tailwind" required>
+                        </div>
+                        <button type="submit" class="btn-blue btn-blue-tailwind">Create Purchase</button>
+                        <a href="{{ route('purchases.index') }}" class="btn-blue btn-blue-tailwind mt-4">Back</a>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

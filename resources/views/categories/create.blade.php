@@ -9,6 +9,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6">
+                    <div class="mb-4">
+                        <a href="{{ route('categories.index') }}" class="btn-blue btn-blue-tailwind">Back</a>
+                    </div>
                     <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
                         Create Category
                     </h2>
@@ -25,4 +28,3 @@
         </div>
     </div>
 </x-app-layout>
-

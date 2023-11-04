@@ -12,9 +12,12 @@
                     <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
                         Categories
                     </h2>
-                    <a href="{{ route('categories.create') }}" class="btn-blue btn-blue-tailwind mb-4">
-                        Create New Category
-                    </a>
+                    <div class="mb-4">
+                        <a href="{{ route('categories.create') }}" class="btn-blue btn-blue-tailwind">
+                            Create New Category
+                        </a>
+                        <a href="{{ route('dashboard') }}" class="btn-blue btn-blue-tailwind">Back</a>
+                    </div>
                     <table class="table-auto">
                         <thead>
                             <tr>
@@ -23,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($categories as $category)
+                            @foreach ($categories as $category)
                                 <tr>
                                     <td class="px-4 py-2">{{ $category->name }}</td>
                                     <td class="px-4 py-2">
