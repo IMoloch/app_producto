@@ -21,12 +21,7 @@ class PurchaseController extends Controller
 
     public function store(Request $request)
     {
-        // $data = $request->validate([
-        //     'cant' => 'required|numeric',
-        //     'id_Product' => 'required|numeric',
-        //     'costo' => 'required|numeric',
-        //     // Add validation rules for other fields as needed
-        // ]);
+        
 
         $data = new Purchase();
         $data->cant = $request->cant;
@@ -51,9 +46,9 @@ class PurchaseController extends Controller
     public function update(Request $request, Purchase $purchase)
     {
         $data = $request->validate([
-            'quantity' => 'required|numeric',
-            'product_id' => 'required|numeric',
-            'cost' => 'required|numeric',
+            'cant' => 'required|numeric',
+            'id_Product' => 'required|numeric',
+            'costo' => 'required|numeric',
             // Add validation rules for other fields as needed
         ]);
 

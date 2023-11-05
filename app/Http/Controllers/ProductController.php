@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 
@@ -58,12 +59,12 @@ class ProductController extends Controller
     public function update(Request $request, Product $products)
     {
              // Valida y actualiza la tarea existente en la base de datos
-             $validatedData = $request->validate([
+            $validatedData = $request->validate([
                 'titulo' => 'required',
                 'descripcion' => 'required',
                 'estado' => 'required',
             ]);
-      
+    
             $products->update($validatedData);
         
             return redirect()->route('products.index');

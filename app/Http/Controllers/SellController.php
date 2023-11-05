@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Sell;
-
 
 class SellController extends Controller
 {
@@ -14,9 +12,8 @@ class SellController extends Controller
      */
     public function index()
     {
-        //
-        $sells = Sell::all();
-        return view('sells.index', ['sells' => DB::table('sells') -> paginate(10)]);
+        $sells = Sell::paginate(10);
+        return view('sells.index', ['sells' => $sells]);
     }
 
     /**
@@ -24,7 +21,7 @@ class SellController extends Controller
      */
     public function create()
     {
-        //
+        return view('sells.create');
     }
 
     /**
@@ -32,7 +29,7 @@ class SellController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Add your validation and storage logic here.
     }
 
     /**
@@ -40,43 +37,32 @@ class SellController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $sell = Sell::find($id);
+        return view('sells.show', ['sell' => $sell]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Sell $sells)
+    public function edit(string $id)
     {
-        //
-        return redirect()->route('sells.index');
+        $sell = Sell::find($id);
+        return view('sells.edit', ['sell' => $sell]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sell $sells)
+    public function update(Request $request, string $id)
     {
-        //
-             // Valida y actualiza la tarea existente en la base de datos
-             $validatedData = $request->validate([
-                'titulo' => 'required',
-                'descripcion' => 'required',
-                'estado' => 'required',
-            ]);
-      
-            $sells->update($validatedData);
-        
-            return redirect()->route('sells.index');
+        // Add your validation and update logic here.
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Sell $sells)
+    public function destroy(string $id)
     {
-        // Elimina la tarea de la base de datos
-        $sells-> delete();
-        return redirect()->route('sells.index')->with('success','Tarea Eliminada');
+        // Add your deletion logic here.
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Routing\Controller;
 use App\Models\Purchase;
 
 
@@ -57,16 +58,16 @@ class PurchaseController extends Controller
     public function update(Request $request, Purchase $po)
     {
              // Valida y actualiza la tarea existente en la base de datos
-             $validatedData = $request->validate([
+            $validatedData = $request->validate([
                 'titulo' => 'required',
                 'descripcion' => 'required',
                 'estado' => 'required',
             ]);
-      
+    
             $po->update($validatedData);
         
             return redirect()->route('po.index');
-       
+    
     }
 
     /**
