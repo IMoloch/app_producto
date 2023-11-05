@@ -33,14 +33,26 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for "price" class="block text-gray-700 dark:text-gray-300">Price</label>
+                            <label for="price" class="block text-gray-700 dark:text-gray-300">Price</label>
                             <input type="number" name="price" id="price" class="form-input form-input-tailwind" required>
                         </div>
-                        <button type="submit" class="btn-blue btn-blue-tailwind">Create Product</button>
+                        <button type="submit" class="btn-blue btn-blue-tailwind save" id="save">Create Product</button>
                     </form>
-                    <a href="{{ route('products.index') }}" class="btn-blue btn-blue-tailwind mt-4">Back</a> <!-- Add a Back button to go to the Products view -->
+                    <a href="{{ route('products.index') }}" class="btn-blue btn-blue-tailwind mt-4 " >Back</a> <!-- Add a Back button to go to the Products view -->
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('save').onclick = function(){
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Los datos han sido guardados',
+        showConfirmButton: false,
+        timer: 5500
+        })
+    };
+    </script>
+
 </x-app-layout>

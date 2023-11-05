@@ -37,7 +37,7 @@
                         <label for="your_field_name" class="block text-gray-700 dark:text-gray-300">Your Field Label</label>
                         <input type="text" name="your_field_name" id="your_field_name" class="form-input form-input-tailwind" value="{{ $purchase->your_field_name }}" required>
                         -->
-                        <button type="submit" class="btn-blue btn-blue-tailwind">Update Purchase</button>
+                        <button type="button" class="btn-blue btn-blue-tailwind update" id="update">Update Purchase</button>
                     </form>
                 </div>
                 <div class="p-6">
@@ -46,4 +46,26 @@
             </div>
         </div>
     </div>
+
+    <script>
+            const updateButton = document.querySelector('.update');
+
+updateButton.addEventListener('click', () => {
+    Swal.fire({
+        title: 'Do you want to save the changes?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Save',
+        denyButtonText: `Don't save`,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire('Saved!', '', 'success');
+            const form = updateButton.closest('form');
+            form.submit();
+        } else if (result.isDenied) {
+            Swal.fire('Changes are not saved', '', 'info');
+        }
+    });
+});
+</script>
 </x-app-layout>

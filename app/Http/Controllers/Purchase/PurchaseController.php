@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Purchase;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\Purchase;
 use App\Models\Product;
 
@@ -11,8 +12,9 @@ class PurchaseController extends Controller
 {
     public function index()
     {
+        $products = Product::all();
         $purchases = Purchase::all();
-        return view('purchases.index', compact('purchases'));   
+        return view('purchases.index', ['purchases'=> DB::table('purchases')->paginate(10)], compact('products'));   
     }
 
     public function create()

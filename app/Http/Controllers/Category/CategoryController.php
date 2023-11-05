@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Category;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller; // Import the base Controller
 
 use App\Models\Category;
@@ -12,7 +13,9 @@ class CategoryController extends Controller // Extend the base Controller
     public function index()
     {
         $categories = Category::all();
-        return view('categories.index', compact('categories'));
+        return view('categories.index', [
+            'categories' => DB::table('categories')->paginate(10)
+        ]);
     }
 
     public function create()

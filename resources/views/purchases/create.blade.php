@@ -32,11 +32,22 @@
                             <label for="cost" class="block text-gray-700 dark:text-gray-300">Cost</label>
                             <input type="number" name="costo" id="costo" class="form-input form-input-tailwind" required>
                         </div>
-                        <button type="submit" class="btn-blue btn-blue-tailwind">Create Purchase</button>
+                        <button type="submit" class="btn-blue btn-blue-tailwind save" id="save">Create Purchase</button>
                         <a href="{{ route('purchases.index') }}" class="btn-blue btn-blue-tailwind mt-4">Back</a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('save').onclick = function(){
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Los datos han sido guardados',
+        showConfirmButton: false,
+        timer: 5500
+        })
+    };
+    </script>
 </x-app-layout>

@@ -33,14 +33,26 @@
                             <input type="number" name="cant" id="cant" class="form-input form-input-tailwind" required>
                         </div>
                         <div class="mb-4">
-                            <label for "price" class="block text-gray-700 dark:text-gray-300">Price</label>
+                            <label for="price" class="block text-gray-700 dark:text-gray-300">Price</label>
                             <input type="number" name="precio" id="precio" class="form-input form-input-tailwind" required>
                         </div>
-                        <button type="submit" class="btn-blue btn-blue-tailwind">Create Sell</button>
+                        <button type="submit" class="btn-blue btn-blue-tailwind save" id="save">Create Sell</button>
                         <a href="{{ route('sells.index') }}" class="btn-blue btn-blue-tailwind">Back</a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('save').onclick = function(){
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Los datos han sido guardados',
+        showConfirmButton: false,
+        timer: 5500
+        })
+    };
+    </script>
 </x-app-layout>

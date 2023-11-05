@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Product;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller; // Update the base Controller import
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use App\Models\Category; // Import the Category model
 
 class ProductController extends Controller
@@ -13,7 +14,9 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        return view('products.index', compact('products'));
+        return view('products.index', [
+            'products' => DB::table('products')->paginate(10)
+        ]);
     }
 
     public function create()
