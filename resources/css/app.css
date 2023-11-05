@@ -5,3 +5,17 @@
 [x-cloak] {
     display: none;
 }
+
+/* Increase specificity for the custom class */
+.btn-blue.btn-blue-tailwind {
+    display: inline-block;
+    background-color: #3490dc;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+}
+
+.btn-blue.btn-blue-tailwind:hover {
+    background-color: #2779bd;
+}

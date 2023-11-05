@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('descripcion')->nullable();
-            $table->float('stock');
-            $table->string('medida');
+            $table->decimal('stock', 8, 2); // Updated the column to match the seeder data
             $table->double('price', 15, 2);
             $table->string('qrCode');
             $table->bigInteger('id_Category')->unsigned();
@@ -35,3 +34,4 @@ return new class extends Migration
         Schema::dropIfExists('products');
     }
 };
+

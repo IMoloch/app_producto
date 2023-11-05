@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('id_Product')->unsigned();
             $table->foreign('id_Product')->references('id')->on('products');
             $table->integer('cant');
-            $table->float('costo');
+            $table->decimal('costo', 8, 2); // Updated the column to match the seeder data
             $table->timestamps();
         });
     }
