@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sell;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\Sell;
 use App\Models\Product;
 
@@ -14,8 +15,9 @@ class SellController extends Controller
         // Fetch a list of sells and pass them to the view
         $products = Product::all();
         $sells = Sell::all();
-        return view('sells.index', compact('sells','products'));
-
+        return view('sells.index',  [
+            'sells' => DB::table('sells')->paginate(10)
+        ], compact('products'));   
     }
 
     public function create()

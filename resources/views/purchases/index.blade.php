@@ -33,24 +33,58 @@
                             @foreach ($purchases as $purchase)
                                 <tr>
                                     <td class="px-4 py-2">{{ $purchase->id }}</td>
-                                    <td class="px-4 py-2">{{ $purchase->product->name }}</td>
+                                    <td class="px-4 py-2">
+                                        @foreach ($products as $product)
+                                        @if ($purchase->id_Product == $product->id) {{ $product->name }} @endif
+                                    @endforeach
+                                    </td>
                                     <td class="px-4 py-2">{{ $purchase->cant }}</td>
                                     <td class="px-4 py-2">${{ number_format($purchase->costo, 2) }}</td>
                                     <td class="px-4 py-2">{{ $purchase->created_at }}</td>
                                     <td class="px-4 py-2">
                                         <a href="{{ route('purchases.edit', $purchase->id) }}" class="btn-blue btn-blue-tailwind">Edit</a>
-                                        <form action="{{ route('purchases.destroy', $purchase) }}" method="POST" class="inline">
+                                        <form action="{{ route('purchases.destroy', $purchase->id) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn-red btn-red-tailwind" onclick="return confirm('Are you sure?')">Delete</button>
+                                            <button type="button" class="btn-red btn-red-tailwind delete" id="delete">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $purchases->links() }}
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+      //Selecciona el boton con la clase eliminar tarea
+      const deleteButtons = document.querySelectorAll('.delete');
+
+      deleteButtons.forEach(button => {
+          button.addEventListener('click', () => {
+          Swal.fire({
+              title: 'Estas seguro?',
+              text: "No podras revertir este proceso!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Si, eliminar!'
+              }).then((result) => {
+              if (result.isConfirmed) {
+                  Swal.fire(
+                  'Eliminado!',
+                  'Tu registro ha sido borrado',
+                  'success'
+                  )
+                  button.closest('form').submit();
+          }
+          })
+      })
+  })
+});
+</script>
 </x-app-layout>

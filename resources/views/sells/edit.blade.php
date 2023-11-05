@@ -34,10 +34,32 @@
                             <label for="precio" class="block text-gray-700 dark:text-gray-300">Price</label>
                             <input type="number" step="0.01" name="precio" id="precio" class="form-input form-input-tailwind" value="{{ $sell->precio }}" required>
                         </div>
-                        <button type="submit" class="btn-blue btn-blue-tailwind">Update Sell</button>
+                        <button type="button" class="btn-blue btn-blue-tailwind update" id="update">Update Sell</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const updateButton = document.querySelector('.update');
+
+updateButton.addEventListener('click', () => {
+Swal.fire({
+title: 'Do you want to save the changes?',
+showDenyButton: true,
+showCancelButton: true,
+confirmButtonText: 'Save',
+denyButtonText: `Don't save`,
+}).then((result) => {
+if (result.isConfirmed) {
+    Swal.fire('Saved!', '', 'success');
+    const form = updateButton.closest('form');
+    form.submit();
+} else if (result.isDenied) {
+    Swal.fire('Changes are not saved', '', 'info');
+}
+});
+});
+</script>
 </x-app-layout>
