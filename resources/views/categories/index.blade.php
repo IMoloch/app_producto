@@ -13,10 +13,10 @@
                         Categories
                     </h2>
                     <div class="mb-4">
+                        <a href="{{ route('dashboard') }}" class="btn-blue btn-blue-tailwind">Back</a>
                         <a href="{{ route('categories.create') }}" class="btn-blue btn-blue-tailwind">
                             Create New Category
                         </a>
-                        <a href="{{ route('dashboard') }}" class="btn-blue btn-blue-tailwind">Back</a>
                     </div>
                     <table class="table-auto">
                         <thead>

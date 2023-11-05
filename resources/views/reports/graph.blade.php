@@ -19,7 +19,8 @@
 
   Highcharts.chart('chart', {
     chart: {
-        type: 'bar'
+        type: 'bar',
+        height: 60+'%'
     },
     title: {
         text: 'Conteo de Productos distintos por Categoría',
@@ -33,13 +34,13 @@
         title: {
             text: null
         },
-        gridLineWidth: 1,
+        gridLineWidth: 1    ,
         lineWidth: 1
     },
     yAxis: {
         allowDecimals:false,
         title: {
-            text: 'Population (millions)',
+            text: 'Quantity (units)',
             align: 'high'
         },
         labels: {

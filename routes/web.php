@@ -28,44 +28,45 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     // Product routes
     Route::resource('products', ProductController::class)
-        ->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'])
+        ->only(['index', 'create', 'store', 'report', 'edit', 'update', 'destroy', 'report'])
         ->names([
             'index' => 'products.index',
             'create' => 'products.create',
             'store' => 'products.store',
-            'show' => 'products.show',
+            'report' => 'products.report',
             'edit' => 'products.edit',
             'update' => 'products.update',
             'destroy' => 'products.destroy',
+            'report' => 'products.report',
         ]);
 
     // Purchase routes
-    // Route::post('/purchase/store', [PurchaseController::class, 'store'])->name('purchases.store');
     Route::resource('purchases', PurchaseController::class)
-        ->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'])
+        ->only(['index', 'create', 'store', 'report', 'edit', 'update', 'destroy'])
         ->names([
             'index' => 'purchases.index',
             'create' => 'purchases.create',
             'store' => 'purchases.store',
-            'show' => 'purchases.show',
+            'report' => 'purchases.report',
             'edit' => 'purchases.edit',
             'update' => 'purchases.update',
             'destroy' => 'purchases.destroy',
         ]);
 
     // Sell routes
-    Route::get('/sells/create', [CreateSellController::class, 'create'])->name('sells.create');
-    Route::post('/sells/store', [CreateSellController::class, 'store'])->name('sells.store');
     Route::resource('sells', SellController::class)
-        ->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'])
+        ->only(['index', 'create', 'store', 'report', 'edit', 'update', 'destroy'])
         ->names([
             'index' => 'sells.index',
             'create' => 'sells.create',
             'store' => 'sells.store',
-            'show' => 'sells.show',
+            'report' => 'sells.report',
             'edit' => 'sells.edit',
             'update' => 'sells.update',
             'destroy' => 'sells.destroy',
         ]);
 });
-Route::get('grafico', [GraphController::class, 'index']);
+Route::get('grafico', [GraphController::class, 'index'])->name('graph.index');
+Route::get('products/report', [ProductController::class, 'report'])->name('products.report');
+Route::get('purchases/report', [PurchaseController::class, 'report'])->name('purchases.report');
+Route::get('sells/report', [SellController::class, 'report'])->name('sells.report');

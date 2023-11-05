@@ -12,10 +12,13 @@
                     <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
                         Products
                     </h2>
+                    <a href="{{ route('dashboard') }}" class="btn-blue btn-blue-tailwind">Back</a>
                     <a href="{{ route('products.create') }}" class="btn-blue btn-blue-tailwind mb-4">
                         Create New Product
                     </a>
-                    <a href="{{ route('dashboard') }}" class="btn-blue btn-blue-tailwind mb-4">Back</a> <!-- Updated Back button with the same style -->
+                    <a href="{{ route('products.report') }}" class="btn-blue btn-blue-tailwind mb-4">
+                        Ver PDF
+                    </a>
                     <table class="table-auto">
                         <thead>
                             <tr>
@@ -76,7 +79,7 @@
                   'success'
                   )
                   button.closest('form').submit();
-          }
+            }
           })
       })
   })

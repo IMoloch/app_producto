@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Sell;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf; //Import DOMPDF library
 use App\Models\Sell;
 use App\Models\Product;
 
@@ -65,6 +66,15 @@ class SellController extends Controller
         $sell->delete();
 
         return redirect()->route('sells.index');
+    }
+
+    public function report()
+    {
+        $sells = Sell::all();
+        $products = Product::all();
+        $pdf = Pdf::loadView('reports.sells', compact('products','sells'));
+        $pdf->setPaper('A4','landscape');
+        return $pdf->stream('archivo.pdf');
     }
 }   
 

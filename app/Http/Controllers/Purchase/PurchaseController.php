@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Purchase;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf; //Import DOMPDF library
 use App\Models\Purchase;
 use App\Models\Product;
 
@@ -63,5 +64,14 @@ class PurchaseController extends Controller
         $purchase->delete();
 
         return redirect()->route('purchases.index');
+    }
+
+    public function report()
+    {
+        $purchases = Purchase::all();
+        $products = Product::all();
+        $pdf = Pdf::loadView('reports.purchases', compact('products','purchases'));
+        $pdf->setPaper('A4','landscape');
+        return $pdf->stream('archivo.pdf');
     }
 }

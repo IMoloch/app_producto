@@ -13,10 +13,13 @@
                         Purchases
                     </h2>
                     <div class="mb-4">
+                        <a href="{{ route('dashboard') }}" class="btn-blue btn-blue-tailwind">Back</a>
                         <a href="{{ route('purchases.create') }}" class="btn-blue btn-blue-tailwind">
                             Create Purchase
                         </a>
-                        <a href="{{ route('dashboard') }}" class="btn-blue btn-blue-tailwind">Back</a>
+                        <a href="{{ route('purchases.report') }}" class="btn-blue btn-blue-tailwind">
+                            Ver PDF
+                        </a>
                     </div>
                     <table class="table-auto">
                         <thead>

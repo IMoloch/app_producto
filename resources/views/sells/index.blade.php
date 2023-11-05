@@ -8,13 +8,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <!-- Sell listing here -->
                 <div class="p-6">
+                    <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+                        Sells
+                    </h2>
                     <div class="mb-4">
+                        <a href="{{ route('dashboard') }}" class="btn-blue btn-blue-tailwind">Back</a>
                         <a href="{{ route('sells.create') }}" class="btn-blue btn-blue-tailwind">
                             Create Sell
                         </a>
-                        <a href="{{ route('dashboard') }}" class="btn-blue btn-blue-tailwind">Back</a>
+                        <a href="{{ route('sells.report') }}" class="btn-blue btn-blue-tailwind">
+                            Ver PDF
+                        </a>
                     </div>
                     <table class="min-w-full table-auto">
                         <thead>
@@ -31,12 +36,6 @@
                                 <tr>
                                     <td class="px-4 py-2">{{ $sell->id }}</td>
                                     <td class="px-4 py-2">
-                                        {{-- @if ($sell->products)
-                                            {{ $sell->products->name }}
-                                        @else
-                                            Product Not Found
-                                        @endif --}}
-
                                         @foreach ($products as $product)
                                             @if ($sell->id_Product == $product->id) {{ $product->name }} @endif
                                         @endforeach

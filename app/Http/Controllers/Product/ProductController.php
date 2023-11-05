@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller; // Update the base Controller import
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category; // Import the Category model
+use Barryvdh\DomPDF\Facade\Pdf; //Import DOMPDF library
 
 class ProductController extends Controller
 {
@@ -32,6 +33,7 @@ class ProductController extends Controller
         $data->descripcion = $request->description;
         $data->price = $request->price;
         $data->id_Category = $request -> id_Category;
+        $data->qrCode = 'template';
         $data->save();
 
         return redirect()->route('products.index');
@@ -83,5 +85,14 @@ class ProductController extends Controller
         } else {
             return response()->json(['message' => 'No matching category found'], 404);
         }
+    }
+
+    public function report()
+    {
+        $products = Product::all();
+        $categories = Category::all();
+        $pdf = Pdf::loadView('reports.products', compact('products','categories'));
+        $pdf->setPaper('A4','landscape');
+        return $pdf->stream('archivo.pdf');
     }
 }
