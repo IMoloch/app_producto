@@ -9,9 +9,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6">
-                    <div class="mb-4">
-                        <a href="{{ route('categories.index') }}" class="btn-blue btn-blue-tailwind">Back</a>
-                    </div>
                     <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
                         Create Category
                     </h2>
@@ -21,10 +18,24 @@
                             <label for="name" class="block text-gray-700 dark:text-gray-300">Category Name</label>
                             <input type="text" name="name" id="name" class="form-input form-input-tailwind" required>
                         </div>
-                        <button type="submit" class="btn-blue btn-blue-tailwind">Create Category</button>
+                        <div class="mb-4" style="clear: right; float:left">
+                        <button type="submit" class="btn bg-cyan-600 p-3 leading-8 tracking-widest text-indigo-100 save" id="save">Create Category</button>
+                        <a href="{{ route('categories.index') }}" class="btn bg-cyan-600 p-4 m-20 leading-8 tracking-widest text-indigo-100">Back</a>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('save').onclick = function(){
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Los datos han sido guardados',
+        showConfirmButton: false,
+        timer: 5500
+        })
+    };
+    </script>
 </x-app-layout>

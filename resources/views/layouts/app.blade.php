@@ -10,6 +10,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -20,12 +21,12 @@
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900 ">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
+                <header class="bg-white dark:bg-emerald-800 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -41,5 +42,24 @@
         @stack('modals')
 
         @livewireScripts
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        {{-- <script>
+            document.getElementById('updateSA').onclick = function() {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Los datos han sido actualizados',
+                    showConfirmButton: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // El usuario confirmó, envía el formulario
+                        document.querySelector('form').submit();
+                    }
+                });
+            };
+        </script> --}}
+
     </body>
+
 </html>

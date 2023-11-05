@@ -36,7 +36,7 @@
                                         <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn-red btn-red-tailwind" onclick="return confirm('Are you sure?')">Delete</button>
+                                            <button type="button" class="btn-red btn-red-tailwind delete" id="delete">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -47,4 +47,35 @@
             </div>
         </div>
     </div>
+    <script>
+          document.addEventListener('DOMContentLoaded', function(){
+        //Selecciona el boton con la clase eliminar tarea
+        const deleteButtons = document.querySelectorAll('.delete');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', () => {
+            Swal.fire({
+                title: 'Estas seguro?',
+                text: "No podras revertir este proceso!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar!'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                    'Eliminado!',
+                    'Tu registro ha sido borrado',
+                    'success'
+                    )
+                    button.closest('form').submit();
+            }
+            })
+        })
+    })
+});
+</script>
+
+
 </x-app-layout>
