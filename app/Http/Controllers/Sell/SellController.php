@@ -20,28 +20,21 @@ class SellController extends Controller
 
     public function create()
     {
-        return view('sells.create');
+        $productos= Product::all();
+        return view('sells.create', compact('productos'));
     }
 
     public function store(Request $request)
     {
-        // Validation logic here
-
-        // Sell::create([
-        //     'id_Product' => $request->input('id_Product'),
-        //     'cant' => $request->input('cant'),
-        //     'precio' => $request->input('precio'),
-        // ]);
 
         $data = new Sell();
         $data->cant = $request->cant;
-        $data->id_Product = $request->id_Product;
+        $data->id_Product = $request->productos;
         $data->precio = $request->precio;
 
         $data->save();
 
-        return redirect()->route('sells.index')->with('success', 'Sell created successfully');
-
+        return redirect()->route('sells.index');
 
     }
 
@@ -53,11 +46,7 @@ class SellController extends Controller
 
     public function update(Request $request, String $id)
     {
-        // $data = $request->validate([
-        //     'id_Product' => 'required|exists:products,id', // Validate the product ID
-        //     'cant' => 'required|numeric',                 // Quantity should be numeric
-        //     'precio' => 'required|numeric',               // Price should be numeric
-        // ]);
+        
 
         $data = Sell::find($id);
         $data->cant = $request->cant;

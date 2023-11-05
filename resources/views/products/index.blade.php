@@ -22,7 +22,9 @@
                                 <th class="px-4 py-2">Name</th>
                                 <th class="px-4 py-2">Description</th>
                                 <th class="px-4 py-2">Price</th>
-                                <th class="px-4 py-2">Actions</th>
+                                <th class="px-4 py-2">Category ID</th>
+                                <th class="px-4 py-2">Stock</th>
+                                <th class="px-4 py-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,6 +33,8 @@
                                     <td class="px-4 py-2">{{ $product->name }}</td>
                                     <td class="px-4 py-2">{{ $product->descripcion }}</td>
                                     <td class="px-4 py-2">{{ $product->price }}</td>
+                                    <td class="px-4 py-2">{{ $product->id_Category }}</td>
+                                    <td class="px-4 py-2">{{ $product->stock}}</td>
                                     <td class="px-4 py-2">
                                         <a href="{{ route('products.edit', $product->id) }}" class="btn-blue btn-blue-tailwind">Edit</a>
                                         <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline">

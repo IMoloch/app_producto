@@ -1,71 +1,5 @@
 <?php
 
-// namespace App\Http\Controllers\Product;
-
-// use Illuminate\Http\Request;
-// use Illuminate\Routing\Controller; // Import the base Controller from the Illuminate\Routing namespace
-// use App\Models\Product;
-
-// class ProductController extends Controller // Extend the base Controller
-// {
-//     public function index()
-//     {
-//         $products = Product::all();
-
-//         return view('products.index', compact('products'));
-//     }
-
-//     public function create()
-//     {
-//         return view('products.create');
-//     }
-
-//     public function store(Request $request)
-//     {
-    
-//         $data = new Product();
-//         $data->name = $request->name;
-//         $data->descripcion = $request->description;
-//         $data->price = $request->price;;
-
-//         $data->save();
-
-//         return redirect()->route('products.index');
-//     }
-
-//     public function edit(Product $product)
-//     {
-//         // Logic for editing a product (e.g., retrieve the product and display the edit form)
-//         return view('products.edit', compact('product'));
-//     }
-
-    
-//     public function update(Request $request, String $id)
-//     {
-
-//         $data = Product::find($id);
-//         $data->name = $request->name;
-//         $data->descripcion = $request->description;
-//         $data->price = $request->price;
-
-//         $data->update();
-
-//         return redirect()->route('products.index')->with('success', 'Sell updated successfully');
-//     }
-
-//     public function destroy(Product $product)
-//     {
-//         $product->delete();
-
-//         return redirect()->route('products.index');
-//     }
-// }
-
-
-
-
-
-
 namespace App\Http\Controllers\Product;
 
 use Illuminate\Http\Request;
@@ -84,7 +18,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('products.create');
+        $categories= Category::all();
+        return view('products.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -93,7 +28,7 @@ class ProductController extends Controller
         $data->name = $request->name;
         $data->descripcion = $request->description;
         $data->price = $request->price;
-
+        $data->id_Category = $request -> id_Category;
         $data->save();
 
         return redirect()->route('products.index');
@@ -101,7 +36,8 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        $categories= Category::all();
+        return view('products.edit', compact('categories', 'product'));
     }
 
     public function update(Request $request, $id) // Removed the String type hint
@@ -110,6 +46,7 @@ class ProductController extends Controller
         $data->name = $request->name;
         $data->descripcion = $request->description;
         $data->price = $request->price;
+        $data->id_Category = $request -> id_Category;
 
         $data->update();
 

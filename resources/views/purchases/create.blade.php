@@ -14,13 +14,19 @@
                     </h2>
                     <form method="POST" action="{{ route('purchases.store') }}">
                         @csrf
+
+                        <div class="mb-4">
+                            <label for="productos" class="block text-gray-700 dark:text-gray-300">Producto</label>
+                            <select name="productos" id="id" class="form-select form-input-tailwind" required>
+                                @foreach ($productos as $id)
+                                    <option value = "{{$id->id}}">{{$id->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="mb-4">
                             <label for="quantity" class="block text-gray-700 dark:text-gray-300">Quantity</label>
                             <input type="number" name="cant" id="cant" class="form-input form-input-tailwind" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="product_id" class="block text-gray-700 dark:text-gray-300">Product ID</label>
-                            <input type="number" name="id_Product" id="id_Product" class="form-input form-input-tailwind" required>
                         </div>
                         <div class="mb-4">
                             <label for="cost" class="block text-gray-700 dark:text-gray-300">Cost</label>

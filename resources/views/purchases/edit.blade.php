@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
 <@php
-    var_dump($purchase);
 @endphp
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -17,17 +16,21 @@
                     <form method="POST" action="{{ route('purchases.update', $purchase->id) }}">
                         @csrf
                         @method('PUT')
+                                <div class="mb-4">
+                                    <label for="id_Product" class="block text-gray-700 dark:text-gray-300">Product</label>
+                                    <select name="id_Product" id="id_Product" class="form-select form-input-tailwind" required>
+                                        @foreach ($products as $product)
+                                            <option value="{{ $product->id }}" @if ($purchase->id_Product == $product->id) selected @endif>{{ $product->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                         <div class="mb-4">
-                            <label for="quantity" class="block text-gray-700 dark:text-gray-300">Quantity</label>
-                            <input type="number" name="quantity" id="cant" class="form-input form-input-tailwind" value="{{ $purchase->cant }}" required>
+                            <label for="cant" class="block text-gray-700 dark:text-gray-300">Quantity</label>
+                            <input type="number" name="cant" id="cant" class="form-input form-input-tailwind" value="{{ $purchase->cant }}" required>
                         </div>
                         <div class="mb-4">
-                            <label for="product_id" class="block text-gray-700 dark:text-gray-300">Product ID</label>
-                            <input type="number" name="product_id" id="id_Product" class="form-input form-input-tailwind" value="{{ $purchase->id_Product }}" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="cost" class="block text-gray-700 dark:text-gray-300">Cost</label>
-                            <input type="number" name="cost" id="costo" class="form-input form-input-tailwind" value="{{ $purchase->costo }}" required>
+                            <label for="costo" class="block text-gray-700 dark:text-gray-300">Cost</label>
+                            <input type="number" step="0.01" name="costo" id="costo" class="form-input form-input-tailwind" value="{{ $purchase->costo }}" required>
                         </div>
                         <!-- Add input fields for other purchase details -->
                         <!-- For example:

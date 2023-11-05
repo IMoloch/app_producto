@@ -5,27 +5,27 @@ namespace App\Http\Controllers\Purchase;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Purchase;
+use App\Models\Product;
 
 class PurchaseController extends Controller
 {
     public function index()
     {
         $purchases = Purchase::all();
-        return view('purchases.index', compact('purchases'));
+        return view('purchases.index', compact('purchases'));   
     }
 
     public function create()
     {
-        return view('purchases.create');
+        $productos= Product::all();
+        return view('purchases.create', compact('productos'));
     }
 
     public function store(Request $request)
     {
-        
-
         $data = new Purchase();
         $data->cant = $request->cant;
-        $data->id_Product = $request->id_Product;
+        $data->id_Product = $request->productos;
         $data->costo = $request->costo;
 
         $data->save();
@@ -40,21 +40,20 @@ class PurchaseController extends Controller
 
     public function edit(Purchase $purchase)
     {
-        return view('purchases.edit', compact('purchase'));
+        $products = Product::all();
+        return view('purchases.edit', compact('purchase', 'products'));
     }
 
-    public function update(Request $request, Purchase $purchase)
+
+    public function update(Request $request, String $id)
     {
-        $data = $request->validate([
-            'cant' => 'required|numeric',
-            'id_Product' => 'required|numeric',
-            'costo' => 'required|numeric',
-            // Add validation rules for other fields as needed
-        ]);
+        $data = Purchase::find($id);
+        $data->cant = $request->cant;
+        $data->id_Product = $request->id_Product;
+        $data->costo = $request->costo;
+        $data->update();
 
-        $purchase->update($data);
-
-        return redirect()->route('purchases.index');
+        return redirect()->route('purchases.index')->with('success', 'Sell updated successfully');
     }
 
     public function destroy(Purchase $purchase)

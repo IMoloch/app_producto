@@ -21,6 +21,7 @@
                     <table class="table-auto">
                         <thead>
                             <tr>
+                                <th class="px-4 py-2">ID</th>
                                 <th class="px-4 py-2">Name</th>
                                 <th class="px-4 py-2">Actions</th>
                             </tr>
@@ -28,6 +29,7 @@
                         <tbody>
                             @foreach ($categories as $category)
                                 <tr>
+                                    <td class="px-4 py-2">{{ $category->id }}</td>
                                     <td class="px-4 py-2">{{ $category->name }}</td>
                                     <td class="px-4 py-2">
                                         <a href="{{ route('categories.edit', $category->id) }}" class="btn-blue btn-blue-tailwind">Edit</a>

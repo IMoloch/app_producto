@@ -15,13 +15,23 @@
                     <form method="POST" action="{{ route('products.store') }}">
                         @csrf
                         <div class="mb-4">
+                            <label for="categories" class="block text-gray-700 dark:text-gray-300">Category</label>
+                            <select name="id_Category" id="id_Category" class="form-select form-input-tailwind" required>
+                    @foreach ($categories as $category)
+                        <option value = "{{$category->id}}">{{$category->name }}</option>
+                    @endforeach
+                        </select>
+                    </div>
+
+                        <div class="mb-4">
                             <label for="name" class="block text-gray-700 dark:text-gray-300">Product Name</label>
                             <input type="text" name="name" id="name" class="form-input form-input-tailwind" required>
                         </div>
                         <div class="mb-4">
                             <label for="description" class="block text-gray-700 dark:text-gray-300">Description</label>
-                            <textarea name="description" id="description" class="form-textarea form-textarea-tailwind" required></textarea>
+                            <textarea name="description" id="description" class="form-textarea form-textarea-tailwind" ></textarea>
                         </div>
+
                         <div class="mb-4">
                             <label for "price" class="block text-gray-700 dark:text-gray-300">Price</label>
                             <input type="number" name="price" id="price" class="form-input form-input-tailwind" required>
