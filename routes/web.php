@@ -1,22 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Category\CreateCategoryController;
-use App\Http\Controllers\Category\EditCategoryController;
-use App\Http\Controllers\Category\ShowCategoryController;
 use App\Http\Controllers\Category\CategoryController;
-use App\Http\Controllers\Product\CreateProductController;
-use App\Http\Controllers\Product\EditProductController;
-use App\Http\Controllers\Product\ShowProductController;
 use App\Http\Controllers\Product\ProductController;
-use App\Http\Controllers\Purchase\CreatePurchaseController; 
-use App\Http\Controllers\Purchase\EditPurchaseController;
-use App\Http\Controllers\Purchase\ShowPurchaseController;
 use App\Http\Controllers\Purchase\PurchaseController;
-use App\Http\Controllers\Sell\CreateSellController; 
-use App\Http\Controllers\Sell\EditSellController;
-use App\Http\Controllers\Sell\ShowSellController;
 use App\Http\Controllers\Sell\SellController;
+use App\Http\Controllers\GraphController;
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
@@ -79,5 +68,4 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
             'destroy' => 'sells.destroy',
         ]);
 });
-
-
+Route::get('grafico', [GraphController::class, 'index']);
