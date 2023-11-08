@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6">
-                    <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+                    <h2 class="text-2xl font-semibold text-gray-700 dark:text-indigo-300 mb-4">
                         Sells
                     </h2>
                     <div class="mb-4">
@@ -21,7 +21,7 @@
                             Ver PDF
                         </a>
                     </div>
-                    <table class="min-w-full table-auto">
+                    <table class="min-w-full table-auto dark:text-white">
                         <thead>
                             <tr>
                                 <th class="px-4 py-2">ID</th>

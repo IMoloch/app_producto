@@ -33,7 +33,6 @@ class ProductController extends Controller
         $data->descripcion = $request->description;
         $data->price = $request->price;
         $data->id_Category = $request -> id_Category;
-        $data->qrCode = 'template';
         $data->save();
 
         return redirect()->route('products.index');

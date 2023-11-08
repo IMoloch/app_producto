@@ -30,7 +30,9 @@ class PurchaseController extends Controller
         $data->cant = $request->cant;
         $data->id_Product = $request->productos;
         $data->costo = $request->costo;
-
+        $products = Product::find($request->productos);
+        $products->stock = $products->stock + $request->cant;
+        $products->update();
         $data->save();
 
         return redirect()->route('purchases.index');
@@ -51,16 +53,28 @@ class PurchaseController extends Controller
     public function update(Request $request, String $id)
     {
         $data = Purchase::find($id);
+        // Devolvemos el stock del producto a como etaba antes de crear la venta
+        $products = Product::find($data->id_Product);
+        $products->stock = $products->stock - $data->cant;
+        $products->update();
+        //Asignamos los nuevos valores a la instancia del modelo Purchase
         $data->cant = $request->cant;
         $data->id_Product = $request->id_Product;
         $data->costo = $request->costo;
+        // Actualizamos el tick del producto con la informacion actualizada
+        $products = Product::find($request->id_Product);
+        $products->stock = $products->stock + $request->cant;
+        $products->update();
         $data->update();
 
-        return redirect()->route('purchases.index')->with('success', 'Sell updated successfully');
+        return redirect()->route('purchases.index')->with('success', 'Purchase updated successfully');
     }
 
     public function destroy(Purchase $purchase)
     {
+        $products = Product::find($purchase->id_Product);
+        $products->stock = $products->stock - $purchase->cant;
+        $products->update();
         $purchase->delete();
 
         return redirect()->route('purchases.index');

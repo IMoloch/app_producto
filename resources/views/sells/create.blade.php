@@ -25,10 +25,6 @@
                         </div>
                         
                         <div class="mb-4">
-                            <label for="product_id" class="block text-gray-700 dark:text-gray-300">Product ID</label>
-                            <input type="number" name="id_Product" id="id_Product" class="form-input form-input-tailwind" required>
-                        </div>
-                        <div class="mb-4">
                             <label for="quantity" class="block text-gray-700 dark:text-gray-300">Quantity</label>
                             <input type="number" name="cant" id="cant" class="form-input form-input-tailwind" required>
                         </div>

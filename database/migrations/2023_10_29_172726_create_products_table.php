@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('descripcion')->nullable();
             $table->integer('stock')->default(0); // Updated the column to match the seeder data
             $table->double('price', 15, 2);
-            $table->string('qrCode');
             $table->bigInteger('id_Category')->unsigned();
             $table->foreign('id_Category')
                 ->references('id')
